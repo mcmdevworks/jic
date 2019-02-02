@@ -21,6 +21,10 @@ const _sPinConfig sPinConfig[] = {
 		{U1TX, GPIO_Mode_AF, GPIO_OType_PP, GPIO_PuPd_UP, GPIO_PinSource9, GPIO_AF_1, 0}, // PA9
 		{U1RX, GPIO_Mode_AF, GPIO_OType_PP, GPIO_PuPd_UP, GPIO_PinSource10, GPIO_AF_1, 0}, // PA10
 
+		{U4TX, GPIO_Mode_AF, GPIO_OType_PP, GPIO_PuPd_UP, GPIO_PinSource10, GPIO_AF_0, 0}, // PC10
+		{U4RX, GPIO_Mode_AF, GPIO_OType_PP, GPIO_PuPd_UP, GPIO_PinSource11, GPIO_AF_0, 0}, // PC11
+
+		{GSMPWRKEY, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL, 0, 0, 0} // PD2 GSM Powerkey
 
 };
 

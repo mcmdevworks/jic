@@ -29,10 +29,16 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f0xx_it.h"
+#include "stm32f0xx.h"
+#include "stm32f0xx_conf.h"
+#include "Serial.h"
 
 /** @addtogroup Template_Project
   * @{
   */
+
+volatile uint32_t u32MSTick;
+volatile uint32_t u32SecTick;
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -92,6 +98,12 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
+	u32MSTick++;
+	if((u32MSTick % 1000) == 0)
+	{
+		u32SecTick++;
+	}
+
 }
 
 /******************************************************************************/
@@ -109,6 +121,40 @@ void SysTick_Handler(void)
 /*void PPP_IRQHandler(void)
 {
 }*/
+
+void USART1_IRQHandler(void)
+{
+	 if (USART_GetITStatus(USART1, USART_IT_RXNE) == SET)
+	 {
+		 Serial_RxCallback(eSerial_Debug, (uint8_t)USART_ReceiveData(USART1));
+	 }
+
+	 if (USART_GetITStatus(USART1, USART_IT_TXE) == SET)
+	 {
+		 Serial_TxCallback(eSerial_Debug);
+	 }
+}
+
+void USART3_8_IRQHandler(void)
+{
+	 if (USART_GetITStatus(USART4, USART_IT_RXNE) == SET)
+	 {
+		 Serial_RxCallback(eSerial_GSM, (uint8_t)USART_ReceiveData(USART4));
+	 }
+	 else if (USART_GetITStatus(USART3, USART_IT_RXNE) == SET)
+	 {
+		 Serial_RxCallback(eSerial_Modbus, (uint8_t)USART_ReceiveData(USART3));
+	 }
+
+	 if (USART_GetITStatus(USART4, USART_IT_TXE) == SET)
+	 {
+		 Serial_TxCallback(eSerial_GSM);
+	 }
+	 else if (USART_GetITStatus(USART3, USART_IT_TXE) == SET)
+	 {
+		 Serial_TxCallback(eSerial_Modbus);
+	 }
+}
 
 /**
   * @}

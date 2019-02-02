@@ -82,6 +82,10 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+/* User defined global variables */
+extern volatile uint32_t u32MSTick;
+extern volatile uint32_t u32SecTick;
+
 #endif /* __STM32F0XX_CONF_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

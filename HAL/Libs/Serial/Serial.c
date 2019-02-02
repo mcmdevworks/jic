@@ -10,15 +10,41 @@
 
 
 
-
 /* Global Serial Ports */
 _sSerialPort sSerialPort[eSerial_Max];
 USART_TypeDef *pUSARTPorts[eSerial_Max] = {USART1, USART4, USART3};
 
 void Serial_Init(void)
 {
+	USART_InitTypeDef UsartPort;
+
 	/* Configure Debug Port */
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
+	USART_DeInit(&UsartPort);
+	UsartPort.USART_BaudRate = 115200;
+	UsartPort.USART_WordLength = USART_WordLength_8b;
+	UsartPort.USART_StopBits = USART_StopBits_1;
+	UsartPort.USART_Parity = USART_Parity_No;
+	UsartPort.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+	UsartPort.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+	USART_Init(USART1, &UsartPort);
+	USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+	NVIC_EnableIRQ(USART1_IRQn);
+
+	/* Configure GSM port */
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART4, ENABLE);
+	USART_DeInit(&UsartPort);
+	UsartPort.USART_BaudRate = 115200;
+	UsartPort.USART_WordLength = USART_WordLength_8b;
+	UsartPort.USART_StopBits = USART_StopBits_1;
+	UsartPort.USART_Parity = USART_Parity_No;
+	UsartPort.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+	UsartPort.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+	USART_Init(USART4, &UsartPort);
+	USART_ITConfig(USART4, USART_IT_RXNE, ENABLE);
+	NVIC_EnableIRQ(USART3_8_IRQn);
+
+	/* Configure Modbus port */
 
 }
 
