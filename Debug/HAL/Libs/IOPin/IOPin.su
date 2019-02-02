@@ -1,0 +1,4 @@
+IOPin.c:31:6:IO_Init	40	static
+IOPin.c:76:6:IO_SetOutputPin	8	static
+IOPin.c:84:6:IO_ResetOutputPin	8	static
+IOPin.c:92:6:IO_GetInputPinState	8	static

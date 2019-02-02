@@ -1,0 +1,13 @@
+Serial.c:17:6:Serial_Init	48	static
+Serial.c:51:6:Serial_InitBuffer	40	static
+Serial.c:92:6:Serial_Write	32	static
+Serial.c:109:6:Serial_WriteByte	16	static
+Serial.c:114:6:Serial_WriteString	16	static
+Serial.c:119:9:Serial_TxGetByte	16	static
+Serial.c:135:10:Serial_TxGetCount	12	static
+Serial.c:73:6:Serial_TxCallback	16	static
+Serial.c:152:6:Serial_RxPutByte	12	static
+Serial.c:87:6:Serial_RxCallback	8	static
+Serial.c:162:10:Serial_RxGetCount	12	static
+Serial.c:179:9:Serial_ReadByte	12	static
+Serial.c:191:10:Serial_Read	32	static
